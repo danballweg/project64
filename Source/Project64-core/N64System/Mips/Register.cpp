@@ -777,6 +777,8 @@ bool CRegisters::DoIntrException()
     {
         return false;
     }
+    // Interrupt is not in a delay slot, ignore any stale pipeline stage
+    m_System.m_PipelineStage = PIPELINE_STAGE_NORMAL;
     TriggerException(EXC_INT, 0);
     return true;
 }
